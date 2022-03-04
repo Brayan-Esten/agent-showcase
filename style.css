@@ -1,0 +1,270 @@
+@font-face {
+    font-family: "Tungsten Bold";
+    src: url("//db.onlinewebfonts.com/t/561f38b1f4570de0fb8a39d691ab058c.woff") format("woff");
+}
+
+:root{
+    --red: #ff4655;
+    --black: #0f1923;
+    --white: #ece8e1;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+li{
+    list-style-type: none;
+}
+
+body {
+    background-color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 1310px;
+}
+
+.agent-wrapper{
+    min-height: 740px;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner video{
+    height: 110vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -9;
+}
+
+.flex-container{
+    min-height: inherit;
+    width: 88%;
+    padding: 25px 0;
+    margin: auto;
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.carousel{
+    width: 35%;
+    height: 555px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    counter-reset: count;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel h1{
+    transition: .6s;
+    cursor: pointer;
+    font-size: 6rem;
+    text-transform: uppercase;
+    font-weight: 1000;
+    font-family: Tungsten Bold;
+}
+
+.carousel h1::before{
+    counter-increment: count;
+    content : counter(count);
+    position: relative;
+    top: -45px;
+    font-size: .3em;
+    padding-right: .9em;
+}
+
+.carousel h1.active1{
+    color: var(--red);
+    transform: translateX(.2em);
+}
+
+.carousel h1:hover:not(.active1){
+    transform : translateX(.2em);
+}
+
+.agent-image{
+    width: 100%;
+    top: 10%;
+    height: 45rem;
+    position: absolute;
+    z-index: 9;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+}
+
+.agent-image img{
+    width: auto;
+}
+
+@keyframes fade{
+    to{
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.fade{
+    opacity: 0;
+    transform: scale(.9) translateY(-50px);
+    animation: fade .6s forwards;
+}
+
+.agent-bio{
+    width: 25%;
+    min-height: 18em;
+    align-self: center;
+    margin-bottom: 6em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.agent-bio h2{
+    font-size: 2.5rem;
+    font-family: Tungsten Bold;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    font-weight: 1000;
+}
+
+.agent-bio p{
+    font-weight: 550;
+    font-size: .9rem;
+    line-height: 1.5rem;
+}
+
+.agent-bio hr{
+    background-color: var(--white);
+}
+
+.ability-wrapper{
+    min-height: 530px;
+}
+
+.grid-container{
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 
+        'header video video'
+        'abilities video video'
+        'abilities blank blank';
+    gap: 30px;
+}
+
+.grid-container h1{
+    font-family: Tungsten Bold;
+    color: var(--black);
+    text-transform: uppercase;
+    font-size: 4rem;
+    grid-area: header;
+}
+
+.abilities{
+    grid-area: abilities;
+    padding-left: 7em;
+}
+
+.skill-list{
+    display: flex;
+    margin: 25px 0 50px;
+}
+
+.skill-list li{
+    width: 70px;
+    height: 70px;
+    border: .5px solid black;
+    margin-right: 20px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: .6s;
+}
+
+.skill-list li:not(.active2) {
+    border: .5px solid #bbb;
+}
+
+.skill-list li img {
+    width: 60%;
+    filter: invert();
+    transition: .6s;
+}
+
+.skill-list li:not(.active2) img{
+    filter: brightness(.55);
+}
+
+.skill-list li::after {
+    content: "";
+    background-color: var(--red);
+    position: absolute;
+    z-index: -1;
+    left: -150%;
+    right: -25%;
+    top: 0;
+    bottom: 0;
+    transform: skewX(-15deg) scale(0, 1);
+    transition: .3s;
+}
+
+.skill-list li:hover:not(.active2) img {
+    filter: none;
+    transform: scale(1.2);
+}
+
+.skill-list li:hover:not(.active2)::after {
+    transform: skewX(-15deg) scale(1, 1);
+}
+
+.skill-desc h2{
+    font-size: 1.3rem;
+    margin-bottom: 1.5em;
+    text-transform: uppercase;
+    color: var(--black);
+}
+
+.skill-desc p{
+    font-size: .96rem;
+    width: 88%;
+    color: #888;
+    line-height: 1.5rem;
+    animation-delay: .2s;
+    text-align: justify;
+}
+
+@keyframes slide-up{
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-up{
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slide-up .6s forwards;
+}
+
+.skill-preview{
+    grid-area: video;
+    width: 100%;
+    box-shadow: 10px 20px 0 #666;
+}
